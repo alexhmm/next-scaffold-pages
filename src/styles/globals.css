@@ -4,3 +4,7 @@
 body {
   @apply flex justify-center m-0 min-h-screen;
 }
+
+#__next {
+  @apply flex flex-col items-center min-h-screen w-full;
+}

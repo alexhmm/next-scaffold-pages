@@ -1,5 +1,9 @@
 import type { AppProps } from 'next/app';
+import { appWithTranslation } from 'next-i18next';
 import { EmotionCache } from '@emotion/react';
+
+// Components
+import Layout from '@/components/Layout/Layout';
 
 // Providers
 import PageProvider from '@/providers/PageProvider';
@@ -17,12 +21,16 @@ export interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-export default function App(props: MyAppProps) {
+function App(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
     <PageProvider emotionCache={emotionCache}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </PageProvider>
   );
 }
+
+export default appWithTranslation(App);
