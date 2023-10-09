@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import { EmotionCache } from '@emotion/react';
@@ -7,7 +8,7 @@ import { EmotionCache } from '@emotion/react';
 import Layout from '@/components/Layout/Layout';
 
 // Hooks
-import useLanguage from '@/hooks/useLanguage.hook';
+import useLanguage from '@/hooks/use-language.hook';
 
 // Providers
 import PageProvider from '@/providers/PageProvider';
@@ -32,6 +33,8 @@ function App(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const { changeLanguage } = useLanguage();
 
+  const queryClient = new QueryClient();
+
   useEffect(() => {
     if (typeof window !== 'undefined' && localStorage.getItem('language')) {
       changeLanguage(localStorage.getItem('language') as Language);
@@ -39,11 +42,13 @@ function App(props: MyAppProps) {
   }, []);
 
   return (
-    <PageProvider emotionCache={emotionCache}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </PageProvider>
+    <QueryClientProvider client={queryClient}>
+      <PageProvider emotionCache={emotionCache}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </PageProvider>
+    </QueryClientProvider>
   );
 }
 

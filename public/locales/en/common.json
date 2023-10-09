@@ -1,4 +1,8 @@
 {
+  "nav": {
+    "home": "Home",
+    "posts": "Posts"
+  },
   "settings": {
     "language": {
       "de": "German (DE)",

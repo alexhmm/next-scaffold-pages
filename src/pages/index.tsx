@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { Button, Typography } from '@mui/material';
 
 // Hooks
-import useLanguage from '@/hooks/useLanguage.hook';
+import useLanguage from '@/hooks/use-language.hook';
 
 // Styles
 import styles from './Home.module.scss';
