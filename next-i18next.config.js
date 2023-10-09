@@ -17,7 +17,6 @@ module.exports = {
       : '/locales',
 
   reloadOnPrerender: process.env.NODE_ENV === 'development',
-
   /**
    * @link https://github.com/i18next/next-i18next#6-advanced-configuration
    */
